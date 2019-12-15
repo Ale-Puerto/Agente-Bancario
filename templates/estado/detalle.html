@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 d-flex align-item-center justify-content-center">
+        <div class="card">
+            <div class="card-header">
+                <h2>Detalle de transaccion {{object.slug}}</h2>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-primary">Cuenta</p>
+                    </div>
+                    <div class="col">
+                        <p>{{object.Id_Cuenta}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col mt-4">
+                            <p class="text-primary">Cliente</p>
+                        </div>
+                        <div class="col mt-4">
+                            <p>{{request.user.username}}</p>
+                        </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <p class="text-primary">Fecha de Transaccion</p>
+                    </div>
+                    <div class="col">
+                        <p>{{object.Fecha_Transaccion}}</p>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <p class="text-primary text-center">Tipo de Transaccion</p>
+                    </div>
+                    <div class="col text-center col-md-12">
+                        <p>{{object.Tipo}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <h4 class="text-center text-danger">Monto</h4>
+                    </div>
+                    <div class="col-md-4 ">
+                        <h4 class="text-center text-danger">Saldo Anterior</h4>
+                    </div>
+                    <div class="col-md-4 ">
+                        <h4 class="text-center text-danger">Saldo Restante</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                       <p class="text-center"> {{object.Monto}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-center">{{object.Saldo_anterior}}</p>
+                    </div>
+                    <div class="col-md-4">
+                       <p class="text-center"> {{object.Saldo_nuevo}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="hidden" id="val" name="id" value="{{object.slug}}">
+                    <a href="/Estado/reporte/{{object.slug}}" class="btn btn-danger">Imprimir Reporte</a>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>  
+{% endblock content %}
+
+
+{% block js %}
+  <script src="{% static 'js/ajax.js' %}"></script>
+{% endblock js %}

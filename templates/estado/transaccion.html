@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Transacciones</h6>
+    </div>
+    {% if transaccion_list %}
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>ID_Transaccion</th>
+                    <th>Cuenta</th>
+                    <th>Cliente</th>
+                    <th>Tipo de Transaccion</th>
+                    <th>Fecha </th>
+                    <th>Monto</th>
+                    <th>Saldo Anterior</th>
+                    <th>Saldo Restante</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   {% for transaccion  in transaccion_list %}
+                    <tr>
+                      <td>{{transaccion.slug}}</td>
+                      <td>{{transaccion.Id_Cuenta}}</td>
+                      <td>XXX-XXX-XXX</td>
+                      
+                      <td>{{transaccion.Tipo}}</td>
+                      <td>{{transaccion.Fecha_Transaccion}}</td>
+                      <td>{{transaccion.Monto}}</td>
+                      <td>{{transaccion.Saldo_anterior}}</td>
+                      <td>{{transaccion.Saldo_nuevo}}</td>
+                      <td><a href="{{transaccion.get_absolute_url }}" class="btn btn-primary ">{{transaccion.slug}}</a></td>
+                      
+                    </tr>
+                   
+                   {% endfor %}
+                </tbody>
+        </div>
+    </div>
+    {% else%}
+    <div class="container-fluid">
+        <div class="row mt-4 mb-4">
+            <div class="col-md-12 d-flex align-item-center justify-content-center mt-4">
+                <h1>UPSS!!, no tienes registro te invito a realizar una Transaccion</h1>
+                
+            </div>
+            <div class="col-md-12 d-flex align-item-center justify-content-center mt-4">
+                <a class="btn btn-success mr-4 "href="{% url 'core:Deposito' %}">Despositar Dinero</a> 
+                <a class="btn btn-primary  mr-4 "href="{% url 'core:Retiro' %}">Retirar Dinero</a> 
+            </div>
+        </div> 
+    </div>
+
+    {% endif %}
+</div>
+{% endblock content %}

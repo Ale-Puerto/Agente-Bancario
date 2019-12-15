@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+        <div class="row" style="width: 60%;">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Bienvenido a su cuenta </h6>
+                </div>
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'img/undraw_posting_photo.svg' %}" alt="">
+                  </div>
+                  <h1>Hola Bienvenido {{request.user.username}}</h1>
+                  <p class="text-center mt-4">Desde nuestro sistemas podras admininstrar tus cuenta de forma facil y segura
+                  contamos con los servicios esenciales para que puedas controlar y consultar tu cuentas, en todo tiempo que quieras
+                  y con la comodidad y confianza de una sucursal
+                  
+                  </p>
+                  <ul class="nav navbar-nav ">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'core:indexA' %}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Reportar un error </span></a>
+                    </li>
+                                   
+                  </ul>
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+
+        <!-- Illustrations -->
+        
+</div>
+{% endblock content %}

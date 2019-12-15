@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% if cuenta_list %}
+            {% for cuenta in cuenta_list %}
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-header bg-success">
+                     <div class="text-xs font-weight-bold text-primary  text-uppercase mb-1">ID de la Cuenta{{cuenta.IdCuenta}}</div>
+                </div>
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                     
+                      <div class="h5 mb-0 font-weight-bold mt-4 mb-4 text-gray-800"> Tipo de Cuenta : {{cuenta.Tipo}}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Saldo en Cuenta : {{cuenta.Monto}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                        <a href="/Estado/estadoCuenta/{{cuenta.IdCuenta}}" class="btn btn-info btn-icon-split">
+                                <span class="icon text-white-50">
+                                  <i class="fas fa-info-circle"></i>
+                                </span>
+                                <span class="text">Imprimir Recibo</span>
+                        </a>
+                </div>
+              </div>
+            </div>
+            
+           
+            
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</container>
+           
+{% endblock content %}
