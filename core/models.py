@@ -58,7 +58,7 @@ class Transaccion(models.Model):
     
     
     def __str__(self):
-        return self.IdTransaccion
+        return self.slug
     
     def get_absolute_url(self):
         return reverse("core:transaccion_detail", kwargs={"slug": self.slug})

@@ -30,13 +30,29 @@ class CuentaListView(generic.ListView):
     model = Cuenta
    
     template_name = "estado/consulta.html"
+    
+    def get_queryset(self):
+        query = get_object_or_404(Cliente, user = self.request.user.id)
+        return Cuenta.objects.filter(ClientAsig = query)
+    
 
 
 class TransaccionListView(generic.ListView):
     model = Transaccion
     template_name = "estado/transaccion.html"
     
-    
+    def get_queryset(self):
+        query = get_object_or_404(Cliente, user = self.request.user.id)
+        
+        cuenta = Cuenta.objects.filter(ClientAsig = query)
+        if len(cuenta) == 1:
+            return Transaccion.objects.filter(Id_Cuenta = cuenta[0].IdCuenta
+                                              )
+        else:    
+            return Transaccion.objects.filter(Id_Cuenta = cuenta[1].IdCuenta)
+       
+        
+           
 class RetirarView(TemplateView):
     template_name = "estado/retiros.html"
     
@@ -84,7 +100,7 @@ def retiro_transaccion(request):
        
     monto = request.GET.get('monto',None)
     monto = float(monto)
-    cuenta = get_object_or_404(Cuenta, IdCuenta = '1')
+    cuenta = get_object_or_404(Cuenta, IdCuenta = '2')
     if monto < cuenta.Monto:
         saldo_anterior = cuenta.Monto
         nuevo_saldo = saldo_anterior - monto
